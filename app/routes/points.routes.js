@@ -10,4 +10,9 @@ module.exports = function(app){
         controller.getPoint
     );
 
-}
+    app.post(
+        "/add_point/",
+        controller.postPoint
+    );
+
+};

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Point = mongoose.model(
+const PointScheme = mongoose.model(
     'Point',
     new mongoose.Schema({
         name: String,
@@ -11,4 +11,4 @@ const Point = mongoose.model(
     })
 );
 
-module.exports = Point;
+module.exports = PointScheme;

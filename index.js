@@ -5,28 +5,26 @@ const dotenv = require("dotenv").config();
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
-
+const db = require("./app/models");
+const initialFunction = require("./app/services/initialFunction");
 
 let corsOptions = {
     origin: "http://localhost:8081"
 };
 
-app.use(cors(corsOptions));
-
-app.use(express.json());
-
-const db = require("./app/models");
-
 db.mongoose
-    .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
-    .then(() => {
-        console.log("Successfully connect to MongoDB.");
-    })
-    .catch(err => {
-        console.error("Connection error", err);
-        process.exit();
-    });
+.connect(dbConfig.dbUri, dbConfig.mongooseOptions)
+.then(() => {
+    console.log("Successfully connect to MongoDB.");
+    initialFunction();
+})
+.catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+});
 
+app.use(cors(corsOptions));
+app.use(express.json());
 // simple route
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to pilarTecno application." });
@@ -34,7 +32,6 @@ app.get("/", (req, res) => {
 
 // routes
 require("./app/routes/points.routes")(app);
-
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
