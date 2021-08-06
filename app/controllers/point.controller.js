@@ -107,5 +107,27 @@ async function patchPlace(req, res) {
     })
 }
 
+async function patchPlaces(req, res) {
 
-module.exports = { getPoint, getPlaces, getPointById, postPoint, deletePlace, patchPlace };
+  const id = req.body.id;
+  delete req.body.id;
+ /*  console.log(id) */
+  pointSchema.findByIdAndUpdate(id, req.body)
+ 
+    .exec()
+    .then(doc => {
+      console.log("From database", doc);
+      if (doc) {
+        res.status(200).json({ doc });
+      } else {
+        res.status(404).json({ message: 'No valid entry found for provided ID' });
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ error: err })
+  });
+
+}
+
+module.exports = { getPoint, getPlaces, getPointById, postPoint, deletePlace, patchPlace, patchPlaces };

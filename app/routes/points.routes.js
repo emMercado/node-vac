@@ -25,4 +25,8 @@ module.exports = function(app){
         "/patchPlace/:id",
         controller.patchPlace
     )
+    app.patch(
+        "/cambiar/",
+        controller.patchPlaces
+    )
 };
