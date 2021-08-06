@@ -19,5 +19,6 @@ module.exports = async function chargePoints() {
                 console.log(point, obj)
             }
         }
+        console.log("Points vaccination charged successfully..!")
     })
 }

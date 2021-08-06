@@ -5,6 +5,10 @@ getPoint = (req, res) => {
   res.status(200).json(points.vaccination);
 }
 
+async function getPointById(req, res){
+  const id = req.params.pointSchemaId;
+}
+
 async function postPoint(req, res) {
 
   let point = new pointSchema(
@@ -26,4 +30,4 @@ async function postPoint(req, res) {
 }
 
 
-module.exports = { getPoint, postPoint };
+module.exports = { getPoint, getPointById ,postPoint };
