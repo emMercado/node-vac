@@ -26,7 +26,7 @@ async function getPlaces(req, res) {
     });
 }
 
-async function getPointById(req, res, next) {
+async function getPlaceById(req, res, next) {
   const id = req.params.id;
   pointSchema.findById(id)
     .exec()
@@ -44,7 +44,7 @@ async function getPointById(req, res, next) {
     });
 }
 
-async function postPoint(req, res) {
+async function postPlace(req, res) {
 
   let point = new pointSchema(
     {
@@ -79,41 +79,12 @@ async function deletePlace(req, res, next) {
     });
 };
 
-async function patchPlace(req, res) {
-  const id = req.params.id;
-  const updateOps = {};
-  for (const ops of req.body) {
-    updateOps[ops.name] = 
-      ops.value
-  }
-  pointSchema.updateMany({ _id: id }, {
-    $set: updateOps /* {
-      name: req.body.newName,
-      address: req.body.newAddress,
-      latitude: req.body.newLatitude,
-      longitude: req.body.newLongitude,
-      url: req.body.newUrl,
-    } */
-  })
-    .then(result => {
-      console.log(result);
-      res.status(200).json(result);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
-    })
-}
-
 async function patchPlaces(req, res) {
 
   const id = req.body.id;
   delete req.body.id;
- /*  console.log(id) */
+
   pointSchema.findByIdAndUpdate(id, req.body)
- 
     .exec()
     .then(doc => {
       console.log("From database", doc);
@@ -127,7 +98,6 @@ async function patchPlaces(req, res) {
       console.log(err)
       res.status(500).json({ error: err })
   });
-
 }
 
-module.exports = { getPoint, getPlaces, getPointById, postPoint, deletePlace, patchPlace, patchPlaces };
+module.exports = { getPoint, getPlaces, getPlaceById, postPlace, deletePlace, patchPlaces };

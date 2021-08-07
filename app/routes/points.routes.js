@@ -1,32 +1,35 @@
 const controller = require("../controllers/point.controller");
 
 module.exports = function(app){
+    //get places for json data
     app.get(
-        "/point/",
+        "/points/",
         controller.getPoint
-    );
-    app.get(
-        "/point/:id",
-        controller.getPointById
-    );
+    );  
+    //Routes fo DB MongoDB Atlas 
+    //get all places from mongodb Atlas
     app.get(
         "/places/",
         controller.getPlaces
     );
-    app.post(
-        "/add_point/",
-        controller.postPoint
+    //get place for id
+    app.get(
+        "/places/:id",
+        controller.getPlaceById
     );
+    //add place
+    app.post(
+        "/places/",
+        controller.postPlace
+    );
+    //delete place for id
     app.delete(
-        "/deletePlace/:id",
+        "/places/:id",
         controller.deletePlace
     );
+    //update place direct from json: {id, name, address, lat, long, url} 
     app.patch(
-        "/patchPlace/:id",
-        controller.patchPlace
-    );
-    app.patch(
-        "/cambiar/",
+        "/places/",
         controller.patchPlaces
     );
 };
