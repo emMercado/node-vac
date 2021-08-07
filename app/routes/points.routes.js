@@ -20,13 +20,13 @@ module.exports = function(app){
     app.delete(
         "/deletePlace/:id",
         controller.deletePlace
-    )
+    );
     app.patch(
         "/patchPlace/:id",
         controller.patchPlace
-    )
+    );
     app.patch(
         "/cambiar/",
         controller.patchPlaces
-    )
+    );
 };
