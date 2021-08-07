@@ -23,11 +23,12 @@ db.mongoose
     process.exit();
 });
 
+app.use(morgan('combined'))
 app.use(cors(corsOptions));
 app.use(express.json());
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to pilarTecno application." });
+    res.json({ message: "Welcome to pilar application." });
 });
 
 // routes

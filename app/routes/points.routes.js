@@ -1,6 +1,6 @@
 const controller = require("../controllers/point.controller");
 const courseSchema = require("../schemas/points");
-const validate = require('../middlewares/validateData');
+const validate = require('../middleware/validateData');
 
 module.exports = function(app){
     //get places for json data

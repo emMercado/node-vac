@@ -55,11 +55,10 @@ async function postPlace(req, res) {
       url: req.body.url,
     }
   )
-
   point.save((err, pointStored) => {
     if (err) res.status(500).send({ message: `Error saving point: ${err}` })
 
-    res.status(200).send({ point: pointStored })
+    res.status(200).json({ message: 'Add Places Succesfully', pointStored})
   }
   )
 }
