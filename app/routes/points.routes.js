@@ -1,9 +1,11 @@
 const controller = require("../controllers/point.controller");
+const courseSchema = require("../schemas/points");
+const validate = require('../middlewares/validateData');
 
 module.exports = function(app){
     //get places for json data
     app.get(
-        "/points/",
+        "/points/", 
         controller.getPoint
     );  
     //Routes fo DB MongoDB Atlas 
@@ -19,7 +21,7 @@ module.exports = function(app){
     );
     //add place
     app.post(
-        "/places/",
+        "/places/", validate(courseSchema),
         controller.postPlace
     );
     //delete place for id
@@ -29,7 +31,7 @@ module.exports = function(app){
     );
     //update place direct from json: {id, name, address, lat, long, url} 
     app.patch(
-        "/places/",
+        "/places/", validate(courseSchema),
         controller.patchPlaces
     );
 };
