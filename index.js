@@ -1,18 +1,45 @@
 const express = require('express');
+const morgan = require('morgan');
+const cors = require("cors");
+const dotenv = require("dotenv").config();
+const dbConfig = require("./app/config/db.config");
 
 const app = express();
+const db = require("./app/models");
+const initialFunction = require("./app/services/initialFunction");
 
+let corsOptions = {
+    origin: "http://localhost:8081"
+};
+
+db.mongoose
+.connect(dbConfig.dbUri, dbConfig.mongooseOptions)
+.then(() => {
+    console.log("Successfully connect to MongoDB.");
+    initialFunction();
+})
+.catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+});
+
+app.use(morgan('combined'))
+app.use(cors(corsOptions));
+app.use(express.json());
+// simple route
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to pilar application." });
+});
+
+// routes
+require("./app/routes/points.routes")(app);
+
+// set port, listen for requests
 const PORT = process.env.PORT || 3000;
-
-const rootRouter = require('./app/routes/root');
-
-
-app.use('/', rootRouter);
-
-
 app.listen(PORT, () => {
-    console.log(`API Store connected successfully on port ${PORT}`);
-}); 
+    console.log(`Server is running on port ${PORT}.`);
+});
+
 
 
 
