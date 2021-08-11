@@ -58,7 +58,7 @@ async function postPlace(req, res) {
   point.save((err, pointStored) => {
     if (err) res.status(500).send({ message: `Error saving point: ${err}` })
 
-    res.status(200).json({ message: 'Add Places Succesfully', pointStored})
+    res.status(200).json({ message: 'Add Places Succesfully', pointStored })
   }
   )
 }
@@ -81,22 +81,13 @@ async function deletePlace(req, res, next) {
 async function patchPlaces(req, res) {
 
   const id = req.body.id;
-  delete req.body.id;
 
-  pointSchema.findByIdAndUpdate(id, req.body)
-    .exec()
-    .then(doc => {
-      console.log("From database", doc);
-      if (doc) {
-        res.status(200).json({ doc });
-      } else {
-        res.status(404).json({ message: 'No valid entry found for provided ID' });
-      }
-    })
+  let docs = await pointSchema.updateOne({ _id: id }, req.body)
     .catch(err => {
       console.log(err)
       res.status(500).json({ error: err })
-  });
+    });
+  res.status(200).json({ message: 'Update Place Succesfully', docs });
 }
 
 module.exports = { getPoint, getPlaces, getPlaceById, postPlace, deletePlace, patchPlaces };

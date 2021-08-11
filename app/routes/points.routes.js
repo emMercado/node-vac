@@ -1,7 +1,8 @@
 const controller = require("../controllers/point.controller");
 const courseSchema = require("../schemas/points");
+
 const validate = require('../middleware/validateData');
-const Joi = require('joi');
+
 
 module.exports = function(app){
     //get places for json data
@@ -22,7 +23,7 @@ module.exports = function(app){
     );
     //add place
     app.post(
-        "/places/", validate(courseSchema),
+        "/places/", validate(courseSchema.schema),
         controller.postPlace
     );
     //delete place for id
@@ -32,7 +33,7 @@ module.exports = function(app){
     );
     //update place direct from json: {id, name, address, lat, long, url} 
     app.patch(
-        "/places/", validate(courseSchema),
+        "/places/:id", validate(courseSchema.schemaPatch),
         controller.patchPlaces
     );
 };

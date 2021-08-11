@@ -1,7 +1,7 @@
 {
   "name": "final-proyect",
   "version": "0.1.0",
-  "description": "",
+  "description": "Final proyect back-end",
   "main": "app.js",
   "scripts": {
     "start": "node app",
