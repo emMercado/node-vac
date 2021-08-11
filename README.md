@@ -1,12 +1,12 @@
-#Final Proyect - Backend in NODEJS 
+Final Proyect - Backend in NODEJS 
 
 ---
 
-###Points of Vaccination La Rioja.
+Points of Vaccination La Rioja.
 
 ---
 
-###Description.
+Description.
 
 -Environment backend microservice for final proyect in complement with ReactJs & ReactNativeJS.
 
@@ -19,11 +19,11 @@ The microservice provides the use of different endpoints such as:
 - Delete for -/places/ : We delete the vaccination point by id.
 - Patch for -/places/ : We modify the vaccination place from a body json, entering the Id & other fields.
 
-###Methods POST & Patch are validated by using JOI
+Methods POST & Patch are validated by using JOI
 
 ---
 
-#Author: 
+Author: 
 
 Mercado Babi Emmanuel Eduardo 
 
