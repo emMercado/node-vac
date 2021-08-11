@@ -14,7 +14,7 @@ const db = require("./app/models");
 /* const initialFunction = require("./app/services/initialFunction"); */
 
 
-db.mongoose
+mongoose
 .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
 .then(() => {
     console.log("Successfully connect to MongoDB.");
