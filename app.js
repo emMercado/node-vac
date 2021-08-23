@@ -11,7 +11,7 @@ let corsOptions = {
 const app = express();
 const db = require("./app/models");
 
-/* const initialFunction = require("./app/services/initialFunction"); */
+const initialFunction = require("./app/services/initialFunction");
 
 
 db.mongoose
