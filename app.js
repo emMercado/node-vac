@@ -4,9 +4,9 @@ const cors = require("cors");
 const dotenv = require("dotenv").config();
 const dbConfig = require("./app/config/db.config");
 
-let corsOptions = {
+/* let corsOptions = {
     origin: "http://localhost:8081"
-};
+}; */
 
 const app = express();
 const db = require("./app/models");
@@ -18,7 +18,7 @@ db.mongoose
 .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
 .then(() => {
     console.log("Successfully connect to MongoDB.");
-    /* initialFunction(); */
+    initialFunction();
 })
 .catch(err => {
     console.error("Connection error", err);
@@ -26,7 +26,7 @@ db.mongoose
 });
 
 app.use(morgan('combined'))
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 // simple route
 app.get("/", (req, res) => {
