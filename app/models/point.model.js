@@ -5,9 +5,8 @@ const PointScheme = mongoose.model(
     new mongoose.Schema({
         name: String,
         address: String,
-        latitude: String,
-        longitude: String,
-        url: String,
+        img: String,
+        urlMap: String,
     })
 );
 

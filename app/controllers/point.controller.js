@@ -50,9 +50,8 @@ async function postPlace(req, res) {
     {
       name: req.body.name,
       address: req.body.address,
-      latitude: req.body.latitude,
-      longitude: req.body.longitude,
-      url: req.body.url,
+      img: req.body.img,
+      urlMap: req.body.urlMap,
     }
   )
   point.save((err, pointStored) => {
