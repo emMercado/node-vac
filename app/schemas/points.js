@@ -6,6 +6,8 @@ const schema = Joi.object({
     address: Joi.string().min(3).max(46).required(),
     img: Joi.string().min(3).max(240),
     urlMap: Joi.string().min(3).max(240),
+    latitude: Joi.string().min(6).max(11),
+    longitude: Joi.string().min(6).max(11),
 });
 
 const schemaPatch = Joi.object({
@@ -14,6 +16,8 @@ const schemaPatch = Joi.object({
     address: Joi.string().min(3).max(46).required(),
     img: Joi.string().min(3).max(240),
     urlMap: Joi.string().min(3).max(240),
+    latitude: Joi.string().min(6).max(11),
+    longitude: Joi.string().min(6).max(11),
 });
 
 module.exports = {schema, schemaPatch};

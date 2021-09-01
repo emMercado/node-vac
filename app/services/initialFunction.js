@@ -13,6 +13,8 @@ module.exports = async function chargePoints() {
                     address: obj.address,
                     img: obj.img,
                     urlMap: obj.urlMap,
+                    latitude: obj.latitude,
+                    longitude: obj.longitude
                 })
                 await point.save();
                 console.log(point, obj)
