@@ -11,9 +11,10 @@ module.exports = async function chargePoints() {
                 const point = new pointSchema({
                     name: obj.name,
                     address: obj.address,
+                    img: obj.img,
+                    urlMap: obj.urlMap,
                     latitude: obj.latitude,
-                    longitude: obj.longitude,
-                    url: obj.url,
+                    longitude: obj.longitude
                 })
                 await point.save();
                 console.log(point, obj)
